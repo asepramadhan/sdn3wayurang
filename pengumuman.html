@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengumuman - UPTD SDN 3 Way Urang</title>
+    
+    <!-- Favicon Logo -->
+    <link rel="icon" href="Logo.svg" type="image/svg+xml">
+    
+    <style>
+        /* CSS Reset & Dasar */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        /* Navbar (Banner) */
+        .navbar {
+            background-color: #637796;
+            color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 40px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: #ffffff;
+            cursor: pointer;
+        }
+        .navbar-brand img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            background-color: transparent;
+        }
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .brand-text h1 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin: 0;
+            line-height: 1.2;
+        }
+        .brand-text span {
+            font-size: 0.9rem;
+            color: #e0e0e0;
+            line-height: 1;
+        }
+
+        /* Bagian Menu Navigasi Utama */
+        .navbar-menu {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        .navbar-menu > li {
+            position: relative;
+            padding: 10px 0;
+        }
+        .navbar-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.3s;
+        }
+        .navbar-menu > li > a:hover {
+            color: #ffcc00;
+        }
+        .dropdown-icon {
+            font-size: 0.7rem;
+        }
+
+        /* Styling Dropdown */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #637796;
+            min-width: 220px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1001;
+            list-style: none;
+            border-radius: 0 0 5px 5px;
+            padding: 5px 0;
+        }
+        .navbar-menu li:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown-content li {
+            width: 100%;
+        }
+        .dropdown-content a {
+            padding: 12px 20px;
+            display: block;
+            font-weight: 400;
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .dropdown-content li:last-child a {
+            border-bottom: none;
+        }
+        .dropdown-content a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffcc00;
+        }
+        .navbar-menu > li:last-child .dropdown-content {
+            left: auto;
+            right: 0;
+        }
+
+        /* --- STYLING HALAMAN PENGUMUMAN --- */
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .page-title {
+            color: #0056b3;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .page-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: #ffcc00;
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Daftar Pengumuman */
+        .announcement-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .announcement-card {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 5px solid #0056b3; /* Garis aksen biru di sebelah kiri */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .announcement-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .announcement-date {
+            font-size: 0.85rem;
+            color: #777;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .announcement-title {
+            font-size: 1.3rem;
+            color: #0056b3;
+            margin-bottom: 10px;
+        }
+
+        .announcement-desc {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .btn-readmore {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #ffcc00;
+            color: #333;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-readmore:hover {
+            background-color: #e6b800;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333333;
+            color: #ffffff;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+        }
+        footer p {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+        .copyright {
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: #aaaaaa;
+        }
+
+        /* Responsif untuk HP */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 15px;
+                gap: 15px;
+            }
+            .navbar-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="index.html" class="navbar-brand">
+            <img src="Logo.svg" alt="Logo Tut Wuri Handayani">
+            <div class="brand-text">
+                <h1>UPTD SDN 3 Way Urang</h1>
+                <span>Ragom Mufakat 1, Kalianda, Lampung Selatan</span>
+            </div>
+        </a>
+        
+        <ul class="navbar-menu">
+            <li>
+                <a href="index.html#beranda">Beranda <span class="dropdown-icon">&#9662;</span></a>
+                <ul class="dropdown-content">
+                    <li><a href="galeri-gambar.html">Gambar</a></li>
+                    <li><a href="index.html#">Video</a></li>
+                </ul>
+            </li>
+            
+            <li>
+                <a href="index.html#profil">Profil <span class="dropdown-icon">&#9662;</span></a>
+                <ul class="dropdown-content">
+                    <li><a href="tentang-sekolah.html">Tentang Sekolah</a></li>
+                    <li><a href="kepala-sekolah.html">Kepala Sekolah</a></li>
+                    <li><a href="index.html#">Prestasi Sekolah</a></li>
+                    <li><a href="index.html#">Dewan Guru dan Karyawan</a></li>
+                </ul>
+            </li>
+            
+            <li>
+                <a href="index.html#data">Data <span class="dropdown-icon">&#9662;</span></a>
+                <ul class="dropdown-content">
+                    <li><a href="index.html#">Data Guru</a></li>
+                    <li><a href="index.html#">Data Siswa</a></li>
+                </ul>
+            </li>
+            
+            <li>
+                <a href="index.html#informasi">Informasi <span class="dropdown-icon">&#9662;</span></a>
+                <ul class="dropdown-content">
+                    <!-- Tautan Pengumuman Sudah Terhubung -->
+                    <li><a href="pengumuman.html">Pengumuman</a></li>
+                    <li><a href="index.html#">Unduhan</a></li>
+                </ul>
+            </li>
+            
+            <li>
+                <a href="#link">Link <span class="dropdown-icon">&#9662;</span></a>
+                <ul class="dropdown-content">
+                    <li><a href="https://referensi.data.kemendikdasmen.go.id/pendidikan/npsn/10800148" target="_blank">Kemendikdasmen</a></li>
+                    <li><a href="https://www.instagram.com/sdn3_wayurang/" target="_blank">Instagram</a></li>
+                    <li><a href="https://maps.app.goo.gl/58QXYSDo9iLfGgwj9" target="_blank">Google Maps</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Konten Utama: Pengumuman -->
+    <div class="container">
+        <h2 class="page-title">Pengumuman Sekolah</h2>
+        
+        <div class="announcement-list">
+            
+            <!-- Pengumuman 1 -->
+            <div class="announcement-card">
+                <div class="announcement-date">📅 10 Agustus 2026</div>
+                <h3 class="announcement-title">Jadwal Pelaksanaan Ujian Tengah Semester (UTS) Ganjil</h3>
+                <p class="announcement-desc">Diberitahukan kepada seluruh siswa dan wali murid UPTD SDN 3 Way Urang, bahwa Pelaksanaan Ujian Tengah Semester (UTS) Ganjil Tahun Ajaran 2026/2027 akan dilaksanakan mulai tanggal 24 Agustus hingga 29 Agustus 2026. Mohon untuk mempersiapkan diri dengan baik.</p>
+                <a href="#" class="btn-readmore">Baca Selengkapnya</a>
+            </div>
+
+            <!-- Pengumuman 2 -->
+            <div class="announcement-card">
+                <div class="announcement-date">📅 5 Agustus 2026</div>
+                <h3 class="announcement-title">Rapat Komite dan Wali Murid Kelas 1 - 6</h3>
+                <p class="announcement-desc">Mengundang seluruh Bapak/Ibu Wali Murid kelas 1 sampai dengan kelas 6 untuk hadir dalam Rapat Komite Sekolah yang akan membahas program kerja sekolah selama satu tahun ke depan. Rapat akan diadakan di ruang aula sekolah pada hari Sabtu mendatang.</p>
+                <a href="#" class="btn-readmore">Baca Selengkapnya</a>
+            </div>
+
+            <!-- Pengumuman 3 -->
+            <div class="announcement-card">
+                <div class="announcement-date">📅 28 Juli 2026</div>
+                <h3 class="announcement-title">Kegiatan Ekstrakurikuler Wajib Pramuka</h3>
+                <p class="announcement-desc">Sesuai dengan kurikulum yang berlaku, kegiatan ekstrakurikuler Pramuka wajib diikuti oleh seluruh siswa kelas 4, 5, dan 6. Kegiatan akan dimulai secara rutin setiap hari Jumat sore pukul 14.30 WIB di lapangan sekolah.</p>
+                <a href="#" class="btn-readmore">Baca Selengkapnya</a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Bagian Footer / Kontak -->
+    <footer id="kontak">
+        <p><strong>📍 Alamat:</strong> Ragom Mufakat 1, Kalianda, Lampung Selatan</p>
+        <p><strong>📧 Email:</strong> - | <strong>📞 Telepon:</strong> - </p>
+        <p class="copyright">&copy; 2026 UPTD SDN 3 Way Urang.</p>
+    </footer>
+
+</body>
+</html>
