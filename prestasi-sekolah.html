@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prestasi Sekolah - UPTD SDN 3 Way Urang</title>
+    
+    <!-- Favicon Logo -->
+    <link rel="icon" href="Logo.svg" type="image/svg+xml">
+    
+    <style>
+        /* CSS Reset & Dasar */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        /* Navbar (Banner) */
+        .navbar {
+            background-color: #637796;
+            color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 40px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: #ffffff;
+            cursor: pointer;
+        }
+        .navbar-brand img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            background-color: transparent;
+        }
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .brand-text h1 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin: 0;
+            line-height: 1.2;
+        }
+        .brand-text span {
+            font-size: 0.9rem;
+            color: #e0e0e0;
+            line-height: 1;
+        }
+
+        /* Bagian Menu Navigasi Utama */
+        .navbar-menu {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        .navbar-menu > li {
+            position: relative;
+            padding: 10px 0;
+        }
+        .navbar-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.3s;
+        }
+        .navbar-menu > li > a:hover {
+            color: #ffcc00;
+        }
+        .dropdown-icon {
+            font-size: 0.7rem;
+        }
+
+        /* Styling Dropdown */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #637796;
+            min-width: 220px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1001;
+            list-style: none;
+            border-radius: 0 0 5px 5px;
+            padding: 5px 0;
+        }
+        .navbar-menu li:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown-content li {
+            width: 100%;
+        }
+        .dropdown-content a {
+            padding: 12px 20px;
+            display: block;
+            font-weight: 400;
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .dropdown-content li:last-child a {
+            border-bottom: none;
+        }
+        .dropdown-content a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffcc00;
+        }
+        .navbar-menu > li:last-child .dropdown-content {
+            left: auto;
+            right: 0;
+        }
+
+        /* --- STYLING HALAMAN PRESTASI --- */
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .page-title {
+            color: #0056b3;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .page-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: #ffcc00;
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+        
+        .page-desc {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #555;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Grid Prestasi */
+        .achievement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .achievement-card {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 5px solid #0056b3; /* Aksen garis biru di atas */
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            border-top-color: #ffcc00; /* Berubah kuning saat dihover */
+        }
+
+        .achievement-icon {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .achievement-year {
+            background-color: #f0f4f8;
+            color: #0056b3;
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            border: 1px solid #d0deec;
+        }
+
+        .achievement-title {
+            color: #333;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .achievement-desc {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333333;
+            color: #ffffff;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+        }
+        footer p {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+        .copyright {
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: #aaaaaa;
+        }
+
+        /* Responsif untuk HP */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 15px;
+                gap: 15px;
+            }
+            .navbar-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="index.html" class="navbar-brand">
+            <img src="Logo.svg" alt="Logo Tut Wuri Handayani">
+            <div class="brand-text">
+                <h1>UPTD SDN 3 Way Urang</h1>
+                <span>Ragom Mufakat 1, Kalianda, Lampung Selatan</span>
+            </div>
+        </a>
+        
+        <ul class="navbar-menu">
+            <li>
+                <a href="index.html#beranda">Beranda <span class="dropdown-icon">&#9662;</span></a>
+                <ul class="dropdown-content">
+                    <li><a href="galeri-gambar.html">Gambar</a></li>
+                    <li><a href="index.html#">Video</a></li>
+                </ul>
+            </li>
+            
+            <li>
+                <a href="index.html#profil">Profil <span class="dropdown-icon">&#9662;</span></a>
+                <ul class="dropdown-content">
+                    <li><a href="tentang-sekolah.html">Tentang Sekolah</a></li>
+                    <li><a href="kepala-sekolah.html">Kepala Sekolah</a></li>
+                    <li><a href="prestasi-sekolah.html">Prestasi Sekolah</a></li>
+                    <li><a href="index.html#">Dewan Guru dan Karyawan</a></li>
+                </ul>
+            </li>
+            
+            <li>
+                <a href="index.html#data">Data <span class="dropdown-icon">&#9662;</span></a>
+                <ul class="dropdown-content">
+                    <li><a href="index.html#">Data Guru</a></li>
+                    <li><a href="index.html#">Data Siswa</a></li>
+                </ul>
+            </li>
+            
+            <li>
+                <a href="index.html#informasi">Informasi <span class="dropdown-icon">&#9662;</span></a>
+                <ul class="dropdown-content">
+                    <li><a href="pengumuman.html">Pengumuman</a></li>
+                    <li><a href="index.html#">Unduhan</a></li>
+                </ul>
+            </li>
+            
+            <li>
+                <a href="#link">Link <span class="dropdown-icon">&#9662;</span></a>
+                <ul class="dropdown-content">
+                    <li><a href="https://referensi.data.kemendikdasmen.go.id/pendidikan/npsn/10800148" target="_blank">Kemendikdasmen</a></li>
+                    <li><a href="https://www.instagram.com/sdn3_wayurang/" target="_blank">Instagram</a></li>
+                    <li><a href="https://maps.app.goo.gl/58QXYSDo9iLfGgwj9" target="_blank">Google Maps</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Konten Utama: Prestasi Sekolah -->
+    <div class="container">
+        <h2 class="page-title">Prestasi Sekolah</h2>
+        <p class="page-desc">Deretan pencapaian luar biasa yang berhasil diraih oleh siswa-siswi dan tenaga pendidik UPTD SDN 3 Way Urang di berbagai tingkat kompetisi, baik akademik maupun non-akademik.</p>
+        
+        <div class="achievement-grid">
+            
+            <!-- Prestasi 1 -->
+            <div class="achievement-card">
+                <span class="achievement-icon">🏆</span>
+                <div class="achievement-year">Tahun 2026</div>
+                <h3 class="achievement-title">Juara 1 Lomba Cerdas Cermat</h3>
+                <p class="achievement-desc">Meraih juara pertama pada Lomba Cerdas Cermat Tingkat Sekolah Dasar Se-Kabupaten Lampung Selatan dalam rangka peringatan Hardiknas.</p>
+            </div>
+
+            <!-- Prestasi 2 -->
+            <div class="achievement-card">
+                <span class="achievement-icon">🥇</span>
+                <div class="achievement-year">Tahun 2025</div>
+                <h3 class="achievement-title">Medali Emas Olimpiade Sains Nasional (OSN)</h3>
+                <p class="achievement-desc">Menjadi perwakilan kabupaten dan berhasil meraih Medali Emas pada ajang OSN Tingkat Provinsi di bidang Ilmu Pengetahuan Alam (IPA).</p>
+            </div>
+
+            <!-- Prestasi 3 -->
+            <div class="achievement-card">
+                <span class="achievement-icon">🏅</span>
+                <div class="achievement-year">Tahun 2025</div>
+                <h3 class="achievement-title">Juara 2 Lomba Tari Kreasi Daerah</h3>
+                <p class="achievement-desc">Tim Kesenian UPTD SDN 3 Way Urang berhasil meraih juara kedua pada festival seni dan budaya anak tingkat kecamatan Kalianda.</p>
+            </div>
+
+            <!-- Prestasi 4 -->
+            <div class="achievement-card">
+                <span class="achievement-icon">⚽</span>
+                <div class="achievement-year">Tahun 2024</div>
+                <h3 class="achievement-title">Juara 1 Turnamen Futsal SD</h3>
+                <p class="achievement-desc">Tim Futsal sekolah sukses merebut piala bergilir Bupati pada kompetisi olahraga antar SD tingkat kabupaten.</p>
+            </div>
+
+            <!-- Prestasi 5 -->
+            <div class="achievement-card">
+                <span class="achievement-icon">🌟</span>
+                <div class="achievement-year">Tahun 2024</div>
+                <h3 class="achievement-title">Sekolah Adiwiyata Kabupaten</h3>
+                <p class="achievement-desc">Mendapatkan penghargaan sebagai Sekolah Adiwiyata tingkat kabupaten karena komitmen menjaga lingkungan hidup di area sekolah.</p>
+            </div>
+
+            <!-- Prestasi 6 -->
+            <div class="achievement-card">
+                <span class="achievement-icon">📖</span>
+                <div class="achievement-year">Tahun 2023</div>
+                <h3 class="achievement-title">Juara Harapan 1 Lomba Pidato Keagamaan</h3>
+                <p class="achievement-desc">Diraih oleh ananda perwakilan kelas 5 pada ajang Pekan Keterampilan dan Seni Pendidikan Agama Islam (Pentas PAI).</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Bagian Footer / Kontak -->
+    <footer id="kontak">
+        <p><strong>📍 Alamat:</strong> Ragom Mufakat 1, Kalianda, Lampung Selatan</p>
+        <p><strong>📧 Email:</strong> - | <strong>📞 Telepon:</strong> - </p>
+        <p class="copyright">&copy; 2026 UPTD SDN 3 Way Urang.</p>
+    </footer>
+
+</body>
+</html>
