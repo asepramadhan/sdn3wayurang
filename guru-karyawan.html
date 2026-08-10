@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dewan Guru dan Karyawan</title>
+    <style>
+        /* Pengaturan Dasar */
+        :root {
+            --primary-color: #0f172a;
+            --secondary-color: #3b82f6;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #334155;
+            --text-muted: #64748b;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+            color: var(--text-main);
+        }
+
+        /* Bagian Header */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+            margin-bottom: 2rem;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            color: #cbd5e1;
+        }
+
+        /* Kontainer Utama */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem 3rem 1rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--secondary-color);
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        .title-wrapper {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        /* Grid Layout untuk Kartu */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        /* Desain Kartu Profil */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            padding-bottom: 1.5rem;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-bottom: 4px solid var(--secondary-color);
+        }
+
+        .card h3 {
+            margin: 1.5rem 0 0.5rem 0;
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            padding: 0 1rem;
+        }
+
+        .card .role {
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .card .subject {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            padding: 0 1rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Profil Pendidik & Tenaga Kependidikan</h1>
+        <p>Mengenal lebih dekat pahlawan tanpa tanda jasa dan staf penggerak sekolah kami.</p>
+    </header>
+
+    <div class="container">
+        <!-- Bagian Jajaran Pimpinan -->
+        <div class="title-wrapper">
+            <h2 class="section-title">Pimpinan Sekolah</h2>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <img src="https://via.placeholder.com/400x400.png?text=Foto+Kepsek" alt="Kepala Sekolah">
+                <h3>Budi Santoso, S.Pd., M.Pd.</h3>
+                <div class="role">Kepala Sekolah</div>
+                <div class="subject">NIP. 19800101 200501 1 001</div>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/400x400.png?text=Foto+Waka" alt="Wakil Kepala Sekolah">
+                <h3>Siti Aminah, M.Si.</h3>
+                <div class="role">Wakil Bidang Kurikulum</div>
+                <div class="subject">Guru Fisika</div>
+            </div>
+        </div>
+
+        <!-- Bagian Dewan Guru -->
+        <div class="title-wrapper">
+            <h2 class="section-title">Dewan Guru</h2>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <img src="https://via.placeholder.com/400x400.png?text=Foto+Guru+1" alt="Guru">
+                <h3>Ahmad Hidayat, S.Kom.</h3>
+                <div class="role">Guru Produktif</div>
+                <div class="subject">Rekayasa Perangkat Lunak</div>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/400x400.png?text=Foto+Guru+2" alt="Guru">
+                <h3>Dewi Lestari, S.Pd.</h3>
+                <div class="role">Guru Mata Pelajaran</div>
+                <div class="subject">Bahasa Inggris</div>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/400x400.png?text=Foto+Guru+3" alt="Guru">
+                <h3>Rina Wahyuni, S.Pd.</h3>
+                <div class="role">Wali Kelas XII</div>
+                <div class="subject">Matematika</div>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/400x400.png?text=Foto+Guru+4" alt="Guru">
+                <h3>Drs. Hendra Gunawan</h3>
+                <div class="role">Guru Mata Pelajaran</div>
+                <div class="subject">Pendidikan Agama Islam</div>
+            </div>
+        </div>
+
+        <!-- Bagian Staf & Karyawan -->
+        <div class="title-wrapper">
+            <h2 class="section-title">Staf & Karyawan</h2>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <img src="https://via.placeholder.com/400x400.png?text=Foto+Staf+1" alt="Staf">
+                <h3>Agus Pramono</h3>
+                <div class="role">Kepala Tata Usaha</div>
+                <div class="subject">Administrasi Sekolah</div>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/400x400.png?text=Foto+Staf+2" alt="Staf">
+                <h3>Yuni Safitri</h3>
+                <div class="role">Pustakawan</div>
+                <div class="subject">Pengelola Perpustakaan</div>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/400x400.png?text=Foto+Staf+3" alt="Staf">
+                <h3>Mulyadi</h3>
+                <div class="role">Petugas Keamanan</div>
+                <div class="subject">Security & Ketertiban</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Nama Sekolah Anda. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
