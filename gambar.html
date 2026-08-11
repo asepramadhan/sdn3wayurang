@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galeri Gambar - UPTD SDN 3 Way Urang</title>
+    <title>Galeri Gambar & Video - UPTD SDN 3 Way Urang</title>
     <link rel="icon" href="Logo.svg" type="image/svg+xml">
     <style>
         /* CSS Reset & Dasar */
@@ -148,7 +148,6 @@
             gap: 20px;
         }
 
-        /* Ikon Album (Menandakan ada banyak foto) */
         .gallery-item {
             background: #fff;
             border-radius: 8px;
@@ -163,7 +162,6 @@
             box-shadow: 0 8px 15px rgba(0,0,0,0.15);
         }
 
-        /* Tanda jumlah foto di pojok kanan atas sampul */
         .album-badge {
             position: absolute;
             top: 10px;
@@ -198,8 +196,7 @@
             background: #fff;
         }
 
-        /* Menyembunyikan foto tambahan di grid */
-        .hidden-images {
+        .hidden-media {
             display: none; 
         }
 
@@ -219,6 +216,7 @@
             justify-content: center;
         }
 
+        /* Styling untuk foto dan video dalam popup */
         .modal-content {
             max-width: 90%;
             max-height: 70vh;
@@ -242,6 +240,7 @@
             font-weight: bold;
             cursor: pointer;
             transition: 0.3s;
+            z-index: 2001;
         }
         .close-btn:hover { color: #ffcc00; }
 
@@ -259,6 +258,7 @@
             border-radius: 5px;
             background-color: rgba(255, 255, 255, 0.1);
             user-select: none;
+            z-index: 2001;
         }
         .prev { left: 20px; }
         .next { right: 20px; }
@@ -267,7 +267,6 @@
             color: #ffcc00;
         }
 
-        /* Keterangan & Counter di dalam Modal */
         #modal-caption {
             margin-top: 15px;
             color: #fff;
@@ -311,7 +310,6 @@
         </a>
         
         <ul class="navbar-menu">
-            <!-- Isi menu sama seperti sebelumnya, disingkat agar fokus pada konten -->
             <li><a href="index.html#beranda">Beranda</a></li>
             <li><a href="index.html#profil">Profil</a></li>
             <li><a href="index.html#data">Data</a></li>
@@ -326,24 +324,23 @@
         
         <div class="gallery-grid">
             
-            <!-- ALBUM 1 (Contoh album dengan BANYAK foto tersembunyi) -->
+            <!-- ALBUM 1: Terdapat Foto dan Video MP4 di dalamnya -->
             <div class="gallery-item" onclick="openAlbum(this)">
-                <!-- Badge Penanda Jumlah Foto (Bisa disesuaikan angkanya) -->
-                <div class="album-badge">📷 6 Foto</div>
+                <!-- Sesuaikan jumlah item -->
+                <div class="album-badge">📁 6 Item</div>
                 
-                <!-- Foto Cover (Yang tampil di halaman utama) -->
                 <img src="IMG-20260723-WA0018.jpg" alt="Peringatan Hari Anak Nasional">
                 <div class="gallery-caption">Peringatan Hari Anak Nasional</div>
 
-                <!-- DAFTAR FOTO TERSEMBUNYI UNTUK ALBUM INI -->
-                <div class="hidden-images">
-                    <!-- Masukkan foto cover lagi agar jadi slide pertama -->
+                <!-- DAFTAR MEDIA TERSEMBUNYI -->
+                <div class="hidden-media">
+                    <!-- Slide 1: Foto Cover -->
                     <img src="IMG-20260723-WA0018.jpg">
-                    <img src="HAN1.jpg">
-                    <img src="HAN2.mp4">
+                    <video src="HAN2.mp4"></video>
                     <img src="HAN3.jpg">
-                    <img src="HAN4.mp4">
-                    <img src="HAN5.mp4">
+                    <img src="HAN1.jpg">
+                    <video src="HAN4.mp4"></video>
+                    <video src="HAN5.mp4"></video>
                 </div>
             </div>
 
@@ -353,39 +350,11 @@
                 <img src="latihandamkar.jpeg" alt="Latihan Dengan Damkar">
                 <div class="gallery-caption">Latihan Dengan Damkar</div>
                 
-                <div class="hidden-images">
+                <div class="hidden-media">
                     <img src="latihandamkar.jpeg">
                     <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80">
                 </div>
             </div>
-
-            <!-- ALBUM 3 (Contoh jika hanya ada 1 foto) -->
-            <div class="gallery-item" onclick="openAlbum(this)">
-                <!-- Jika cuma 1 foto, badge-nya boleh dihapus atau ditulis 1 Foto -->
-                <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=600&q=80" alt="Kegiatan Literasi">
-                <div class="gallery-caption">Program Literasi Perpustakaan</div>
-                
-                <div class="hidden-images">
-                    <!-- Tetap masukkan foto utamanya ke sini agar popup bisa membaca -->
-                    <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=800&q=80">
-                </div>
-            </div>
-
-            <!-- ALBUM 4 -->
-            <div class="gallery-item" onclick="openAlbum(this)">
-                <div class="album-badge">📷 4 Foto</div>
-                <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=600&q=80" alt="Prakarya Siswa">
-                <div class="gallery-caption">Pameran Prakarya Siswa</div>
-                
-                <div class="hidden-images">
-                    <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80">
-                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80">
-                    <img src="https://images.unsplash.com/photo-1522661067900-ab829854a57f?auto=format&fit=crop&w=800&q=80">
-                    <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=800&q=80">
-                </div>
-            </div>
-
-            <!-- Tambahkan album lainnya dengan struktur yang sama jika perlu -->
 
         </div>
     </div>
@@ -393,11 +362,15 @@
     <!-- ELEMEN LIGHTBOX (POPUP SLIDER) -->
     <div id="imageModal" class="modal">
         <span class="close-btn" onclick="closeModal()">&times;</span>
-        <!-- Tombol Next/Prev -->
         <a class="prev" id="btn-prev" onclick="changeSlide(-1)">&#10094;</a>
         <a class="next" id="btn-next" onclick="changeSlide(1)">&#10095;</a>
         
-        <img class="modal-content" id="popup-img">
+        <!-- Wadah Gambar -->
+        <img class="modal-content" id="popup-img" style="display: none;">
+        
+        <!-- Wadah Video -->
+        <video class="modal-content" id="popup-video" controls style="display: none;"></video>
+        
         <div id="modal-caption"></div>
         <div id="modal-counter"></div>
     </div>
@@ -409,41 +382,41 @@
         <p class="copyright">&copy; 2026 UPTD SDN 3 Way Urang.</p>
     </footer>
 
-    <!-- SCRIPT KHUSUS ALBUM FOTO -->
+    <!-- SCRIPT KHUSUS ALBUM CAMPURAN (FOTO & VIDEO) -->
     <script>
         const modal = document.getElementById("imageModal");
         const popupImg = document.getElementById("popup-img");
+        const popupVideo = document.getElementById("popup-video");
         const modalCaption = document.getElementById("modal-caption");
         const modalCounter = document.getElementById("modal-counter");
         const btnPrev = document.getElementById("btn-prev");
         const btnNext = document.getElementById("btn-next");
         
-        let currentAlbumImages = []; // Array untuk menyimpan daftar foto di album yang sedang diklik
+        let currentAlbumMedia = []; 
         let currentSlideIndex = 0;
         let currentAlbumTitle = "";
 
         // Fungsi Buka Album
         function openAlbum(element) {
-            // Ambil judul caption dari album yang diklik
             currentAlbumTitle = element.querySelector('.gallery-caption').innerText;
             
-            // Ambil SEMUA elemen <img> yang ada di dalam kotak div "hidden-images"
-            const hiddenImagesDiv = element.querySelector('.hidden-images');
-            const images = hiddenImagesDiv.querySelectorAll('img');
+            // Ambil elemen img DAN video dari dalam hidden-media
+            const hiddenMediaDiv = element.querySelector('.hidden-media');
+            const mediaElements = hiddenMediaDiv.querySelectorAll('img, video');
             
-            // Bersihkan array sebelum mengisi gambar baru
-            currentAlbumImages = [];
+            currentAlbumMedia = [];
             
-            // Masukkan link gambar (src) ke dalam array
-            images.forEach(img => {
-                currentAlbumImages.push(img.src);
+            mediaElements.forEach(media => {
+                // Simpan tipe (img/video) dan sumber file (src)
+                currentAlbumMedia.push({
+                    type: media.tagName.toLowerCase(),
+                    src: media.src
+                });
             });
 
-            // Mulai dari foto pertama
             currentSlideIndex = 0;
             
-            // Sembunyikan tombol Next/Prev jika foto di dalam album cuma 1
-            if (currentAlbumImages.length <= 1) {
+            if (currentAlbumMedia.length <= 1) {
                 btnPrev.style.display = "none";
                 btnNext.style.display = "none";
             } else {
@@ -458,30 +431,46 @@
         // Fungsi Tutup Popup
         function closeModal() {
             modal.style.display = "none";
+            // Jeda video jika sedang diputar agar suaranya tidak bocor saat ditutup
+            popupVideo.pause(); 
         }
 
-        // Fungsi Ganti Gambar (Next / Prev)
+        // Fungsi Ganti Slide (Next / Prev)
         function changeSlide(n) {
             currentSlideIndex += n;
             
-            // Looping gambar
-            if (currentSlideIndex >= currentAlbumImages.length) {
+            if (currentSlideIndex >= currentAlbumMedia.length) {
                 currentSlideIndex = 0;
             } else if (currentSlideIndex < 0) {
-                currentSlideIndex = currentAlbumImages.length - 1;
+                currentSlideIndex = currentAlbumMedia.length - 1;
             }
             
             updatePopupContent();
         }
 
-        // Fungsi Tampilkan Gambar & Teks ke Layar
+        // Fungsi Tampilkan Konten ke Layar
         function updatePopupContent() {
-            popupImg.src = currentAlbumImages[currentSlideIndex];
+            const media = currentAlbumMedia[currentSlideIndex];
+            
+            // Hentikan video dari slide sebelumnya (jika ada)
+            popupVideo.pause();
+
+            // Cek apakah item ini gambar atau video
+            if (media.type === 'img') {
+                popupVideo.style.display = "none";
+                popupImg.style.display = "block";
+                popupImg.src = media.src;
+            } else if (media.type === 'video') {
+                popupImg.style.display = "none";
+                popupVideo.style.display = "block";
+                popupVideo.src = media.src;
+            }
+
             modalCaption.innerText = currentAlbumTitle;
-            modalCounter.innerText = "Foto " + (currentSlideIndex + 1) + " dari " + currentAlbumImages.length;
+            modalCounter.innerText = "Item " + (currentSlideIndex + 1) + " dari " + currentAlbumMedia.length;
         }
 
-        // Tutup saat mengklik area hitam di luar gambar
+        // Tutup saat mengklik area hitam di luar media
         window.onclick = function(event) {
             if (event.target == modal) {
                 closeModal();
