@@ -19,7 +19,7 @@
             background-color: #f9f9f9;
         }
         
-        /* Navbar (Banner) */
+        /* Navbar */
         .navbar {
             background-color: #637796;
             color: #ffffff;
@@ -37,8 +37,8 @@
             display: flex;
             align-items: center;
             gap: 15px;
-            text-decoration: none; 
-            color: #ffffff;        
+            text-decoration: none;
+            color: #ffffff;
             cursor: pointer;
         }
         .navbar-brand img {
@@ -65,6 +65,7 @@
             line-height: 1;
         }
 
+        /* Menu Navigasi */
         .navbar-menu {
             display: flex;
             list-style: none;
@@ -87,11 +88,11 @@
         .navbar-menu > li > a:hover {
             color: #ffcc00;
         }
-        
         .dropdown-icon {
             font-size: 0.7rem;
         }
 
+        /* Dropdown */
         .dropdown-content {
             display: none;
             position: absolute;
@@ -105,11 +106,12 @@
             border-radius: 0 0 5px 5px;
             padding: 5px 0;
         }
-        
         .navbar-menu li:hover .dropdown-content {
             display: block;
         }
-        
+        .dropdown-content li {
+            width: 100%;
+        }
         .dropdown-content a {
             padding: 12px 20px;
             display: block;
@@ -129,29 +131,30 @@
             right: 0;
         }
 
-        /* Banner Halaman */
-        .page-banner {
-            background-color: #e65100; /* Warna oranye agar beda dari profil */
-            color: white;
-            text-align: center;
-            padding: 40px 20px;
-            margin-bottom: 30px;
-        }
-        .page-banner h2 {
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-        .page-banner p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        /* Kontainer Utama */
+        /* --- STYLING HALAMAN VIDEO --- */
         .container {
             max-width: 1100px;
-            margin: auto;
+            margin: 40px auto;
             padding: 20px;
             min-height: 50vh;
+        }
+
+        /* Gaya Judul yang sama dengan gambar.html */
+        .page-title {
+            color: #0056b3;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .page-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: #ffcc00;
+            margin: 15px auto 0;
+            border-radius: 2px;
         }
         
         /* Grid Layout Khusus Video */
@@ -244,7 +247,7 @@
                 justify-content: center;
                 gap: 10px 20px;
             }
-            .page-banner h2 {
+            .page-title {
                 font-size: 1.6rem;
             }
         }
@@ -264,7 +267,7 @@
         
         <ul class="navbar-menu">
             <li>
-                <a href="index.html">Beranda <span class="dropdown-icon">&#9662;</span></a>
+                <a href="index.html#beranda">Beranda <span class="dropdown-icon">&#9662;</span></a>
                 <ul class="dropdown-content">
                     <li><a href="gambar.html">Gambar</a></li>
                     <li><a href="video.html">Video</a></li>
@@ -272,7 +275,7 @@
             </li>
             
             <li>
-                <a href="#">Profil <span class="dropdown-icon">&#9662;</span></a>
+                <a href="index.html#profil">Profil <span class="dropdown-icon">&#9662;</span></a>
                 <ul class="dropdown-content">
                     <li><a href="tentang-sekolah.html">Tentang Sekolah</a></li>
                     <li><a href="kepala-sekolah.html">Kepala Sekolah</a></li>
@@ -282,7 +285,7 @@
             </li>
             
             <li>
-                <a href="#">Data <span class="dropdown-icon">&#9662;</span></a>
+                <a href="index.html#data">Data <span class="dropdown-icon">&#9662;</span></a>
                 <ul class="dropdown-content">
                     <li><a href="data-guru.html">Data Guru</a></li>
                     <li><a href="data-siswa.html">Data Siswa</a></li>
@@ -290,7 +293,7 @@
             </li>
             
             <li>
-                <a href="#">Informasi <span class="dropdown-icon">&#9662;</span></a>
+                <a href="index.html#informasi">Informasi <span class="dropdown-icon">&#9662;</span></a>
                 <ul class="dropdown-content">
                     <li><a href="pengumuman.html">Pengumuman</a></li>
                     <li><a href="unduhan.html">Unduhan</a></li>
@@ -298,7 +301,7 @@
             </li>
             
             <li>
-                <a href="#">Link <span class="dropdown-icon">&#9662;</span></a>
+                <a href="#link">Link <span class="dropdown-icon">&#9662;</span></a>
                 <ul class="dropdown-content">
                     <li><a href="https://referensi.data.kemendikdasmen.go.id/pendidikan/npsn/10800148" target="_blank">Kemendikdasmen</a></li>
                     <li><a href="https://www.instagram.com/sdn3_wayurang/" target="_blank">Instagram</a></li>
@@ -308,21 +311,16 @@
         </ul>
     </nav>
 
-    <!-- Banner Halaman -->
-    <div class="page-banner">
-        <h2>Galeri Video</h2>
-        <p>Dokumentasi kegiatan, prestasi, dan profil UPTD SDN 3 Way Urang</p>
-    </div>
-
-    <!-- Konten Utama: Daftar Video -->
+    <!-- Konten Utama: Galeri Video -->
     <div class="container">
+        <!-- Judul halaman dengan garis bawah kuning (seperti gambar.html) -->
+        <h2 class="page-title">Galeri Video</h2>
         
         <div class="video-grid">
             
-            <!-- Video 1 (Contoh Embed YouTube) -->
+            <!-- Video 1 -->
             <div class="video-card">
                 <div class="video-container">
-                    <!-- Ganti link src di bawah ini dengan link embed YouTube sekolah Anda -->
                     <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Profil Sekolah" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <div class="video-info">
@@ -332,7 +330,7 @@
                 </div>
             </div>
 
-            <!-- Video 2 (Contoh Embed YouTube) -->
+            <!-- Video 2 -->
             <div class="video-card">
                 <div class="video-container">
                     <iframe src="https://www.youtube.com/embed/tgbNymZ7vqY" title="Kegiatan Pramuka" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -344,10 +342,9 @@
                 </div>
             </div>
 
-            <!-- Video 3 (Contoh Video Lokal / File MP4) -->
+            <!-- Video 3 -->
             <div class="video-card">
                 <div class="video-container">
-                    <!-- Jika ingin memakai video dari komputer/hosting sendiri, gunakan tag <video> -->
                     <video controls poster="poster-upacara.jpg">
                         <source src="upacara.mp4" type="video/mp4">
                         Browser Anda tidak mendukung tag video.
