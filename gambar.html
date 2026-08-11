@@ -6,7 +6,7 @@
     <title>Galeri Gambar - UPTD SDN 3 Way Urang</title>
     <link rel="icon" href="Logo.svg" type="image/svg+xml">
     <style>
-        /* CSS Reset & Dasar (Sama dengan Index) */
+        /* CSS Reset & Dasar */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -19,7 +19,7 @@
             background-color: #f9f9f9;
         }
         
-        /* Navbar */
+        /* Navbar (Sama dengan sebelumnya) */
         .navbar {
             background-color: #637796;
             color: #ffffff;
@@ -65,7 +65,6 @@
             line-height: 1;
         }
 
-        /* Menu Navigasi */
         .navbar-menu {
             display: flex;
             list-style: none;
@@ -92,7 +91,6 @@
             font-size: 0.7rem;
         }
 
-        /* Dropdown */
         .dropdown-content {
             display: none;
             position: absolute;
@@ -109,9 +107,7 @@
         .navbar-menu li:hover .dropdown-content {
             display: block;
         }
-        .dropdown-content li {
-            width: 100%;
-        }
+        .dropdown-content li { width: 100%; }
         .dropdown-content a {
             padding: 12px 20px;
             display: block;
@@ -119,23 +115,16 @@
             font-size: 0.9rem;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .dropdown-content li:last-child a {
-            border-bottom: none;
-        }
-        .dropdown-content a:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: #ffcc00;
-        }
-        .navbar-menu > li:last-child .dropdown-content {
-            left: auto;
-            right: 0;
-        }
+        .dropdown-content li:last-child a { border-bottom: none; }
+        .dropdown-content a:hover { background-color: rgba(255, 255, 255, 0.1); color: #ffcc00; }
+        .navbar-menu > li:last-child .dropdown-content { left: auto; right: 0; }
 
         /* --- STYLING HALAMAN GALERI --- */
         .container {
             max-width: 1100px;
             margin: 40px auto;
             padding: 20px;
+            min-height: 50vh;
         }
 
         .page-title {
@@ -169,6 +158,7 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
+            cursor: pointer; /* Ubah kursor jadi tangan saat diarahkan ke gambar */
         }
 
         .gallery-item:hover {
@@ -178,14 +168,14 @@
 
         .gallery-item img {
             width: 100%;
-            height: 220px; /* Ukuran tinggi semua foto disamakan */
+            height: 220px;
             object-fit: cover;
             display: block;
             transition: transform 0.5s ease;
         }
 
         .gallery-item:hover img {
-            transform: scale(1.05); /* Efek zoom saat disentuh kursor */
+            transform: scale(1.05);
         }
 
         .gallery-caption {
@@ -196,6 +186,81 @@
             border-top: 1px solid #eee;
         }
 
+        /* --- STYLING LIGHTBOX (POPUP SLIDER) --- */
+        .modal {
+            display: none; /* Sembunyikan secara default */
+            position: fixed;
+            z-index: 2000;
+            padding-top: 20px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9); /* Background hitam transparan */
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 75vh;
+            border-radius: 5px;
+            object-fit: contain;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            animation: zoomIn 0.3s ease; /* Animasi muncul */
+        }
+
+        @keyframes zoomIn {
+            from {transform: scale(0.8); opacity: 0;}
+            to {transform: scale(1); opacity: 1;}
+        }
+
+        /* Tombol Close */
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .close-btn:hover, .close-btn:focus { color: #ffcc00; text-decoration: none; }
+
+        /* Tombol Next / Prev */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: auto;
+            padding: 15px 20px;
+            color: white;
+            font-weight: bold;
+            font-size: 24px;
+            transition: 0.3s;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            user-select: none;
+        }
+        .prev { left: 20px; }
+        .next { right: 20px; }
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #ffcc00;
+        }
+
+        /* Teks Keterangan di bawah Popup */
+        #modal-caption {
+            margin-top: 15px;
+            color: #ccc;
+            font-size: 1.1rem;
+            text-align: center;
+            padding: 0 20px;
+        }
+
         /* Footer */
         footer {
             background-color: #333333;
@@ -204,28 +269,14 @@
             padding: 30px 20px;
             margin-top: 50px;
         }
-        footer p {
-            margin-bottom: 10px;
-            font-size: 0.95rem;
-        }
-        .copyright {
-            margin-top: 20px;
-            font-size: 0.85rem;
-            color: #aaaaaa;
-        }
+        footer p { margin-bottom: 10px; font-size: 0.95rem; }
+        .copyright { margin-top: 20px; font-size: 0.85rem; color: #aaaaaa; }
 
         /* Responsif untuk HP */
         @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                padding: 15px;
-                gap: 15px;
-            }
-            .navbar-menu {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 10px 20px;
-            }
+            .navbar { flex-direction: column; padding: 15px; gap: 15px; }
+            .navbar-menu { flex-wrap: wrap; justify-content: center; gap: 10px 20px; }
+            .prev, .next { font-size: 18px; padding: 10px 15px; }
         }
     </style>
 </head>
@@ -249,7 +300,6 @@
                     <li><a href="video.html">Video</a></li>
                 </ul>
             </li>
-            
             <li>
                 <a href="index.html#profil">Profil <span class="dropdown-icon">&#9662;</span></a>
                 <ul class="dropdown-content">
@@ -259,15 +309,13 @@
                     <li><a href="guru-karyawan.html">Dewan Guru dan Karyawan</a></li>
                 </ul>
             </li>
-            
             <li>
                 <a href="index.html#data">Data <span class="dropdown-icon">&#9662;</span></a>
                 <ul class="dropdown-content">
                     <li><a href="data-guru.html">Data Guru</a></li>
-                    <li><a href="data-siswa">Data Siswa</a></li>
+                    <li><a href="data-siswa.html">Data Siswa</a></li>
                 </ul>
             </li>
-            
             <li>
                 <a href="index.html#informasi">Informasi <span class="dropdown-icon">&#9662;</span></a>
                 <ul class="dropdown-content">
@@ -275,7 +323,6 @@
                     <li><a href="unduhan.html">Unduhan</a></li>
                 </ul>
             </li>
-            
             <li>
                 <a href="#link">Link <span class="dropdown-icon">&#9662;</span></a>
                 <ul class="dropdown-content">
@@ -291,48 +338,79 @@
     <div class="container">
         <h2 class="page-title">Galeri Kegiatan Sekolah</h2>
         
-        <!-- Grid Galeri -->
+        <!-- Grid Galeri (Total 10 Gambar) -->
         <div class="gallery-grid">
             
-            <!-- Item Gambar 1 -->
+            <!-- Gambar 1 -->
             <div class="gallery-item">
-                <!-- GANTI URL SRC DI BAWAH DENGAN LINK DARI POSTIMAGES/IMGUR -->
                 <img src="IMG-20260723-WA0018.jpg" alt="Peringatan Hari Anak Nasional">
                 <div class="gallery-caption">Peringatan Hari Anak Nasional</div>
             </div>
 
-            <!-- Item Gambar 2 -->
+            <!-- Gambar 2 -->
             <div class="gallery-item">
-                <!-- Ganti src="..." dengan tautan gambar Anda -->
                 <img src="latihandamkar.jpeg" alt="Latihan Dengan Damkar">
                 <div class="gallery-caption">Latihan Dengan Damkar</div>
             </div>
 
-            <!-- Item Gambar 3 -->
+            <!-- Gambar 3 -->
             <div class="gallery-item">
                 <img src="https://images.unsplash.com/photo-1546410531-908a18a7d426?auto=format&fit=crop&w=600&q=80" alt="Ekstrakurikuler Olahraga">
                 <div class="gallery-caption">Kegiatan Ekstrakurikuler Olahraga</div>
             </div>
 
-            <!-- Item Gambar 4 -->
+            <!-- Gambar 4 -->
             <div class="gallery-item">
                 <img src="https://images.unsplash.com/photo-1510531704581-5b2870972060?auto=format&fit=crop&w=600&q=80" alt="Upacara Bendera">
                 <div class="gallery-caption">Upacara Bendera Hari Senin</div>
             </div>
 
-            <!-- Item Gambar 5 -->
+            <!-- Gambar 5 -->
             <div class="gallery-item">
                 <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=600&q=80" alt="Kegiatan Literasi">
                 <div class="gallery-caption">Program Literasi Perpustakaan</div>
             </div>
 
-            <!-- Item Gambar 6 -->
+            <!-- Gambar 6 -->
             <div class="gallery-item">
                 <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=600&q=80" alt="Lomba Peringatan HUT RI">
                 <div class="gallery-caption">Lomba Peringatan HUT RI</div>
             </div>
 
+            <!-- Gambar 7 -->
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=600&q=80" alt="Prakarya Siswa">
+                <div class="gallery-caption">Pameran Prakarya Siswa</div>
+            </div>
+
+            <!-- Gambar 8 -->
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=600&q=80" alt="Kegiatan Pramuka">
+                <div class="gallery-caption">Perkemahan Pramuka</div>
+            </div>
+
+            <!-- Gambar 9 -->
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1522661067900-ab829854a57f?auto=format&fit=crop&w=600&q=80" alt="Kerja Bakti">
+                <div class="gallery-caption">Kerja Bakti Lingkungan Sekolah</div>
+            </div>
+
+            <!-- Gambar 10 -->
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=600&q=80" alt="Kegiatan Keagamaan">
+                <div class="gallery-caption">Peringatan Hari Besar Keagamaan</div>
+            </div>
+
         </div>
+    </div>
+
+    <!-- ELEMEN LIGHTBOX (POPUP SLIDER) -->
+    <div id="imageModal" class="modal">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+        <a class="next" onclick="changeSlide(1)">&#10095;</a>
+        <img class="modal-content" id="popup-img">
+        <div id="modal-caption"></div>
     </div>
 
     <!-- Bagian Footer / Kontak -->
@@ -341,6 +419,67 @@
         <p><strong>📧 Email:</strong> - | <strong>📞 Telepon:</strong> - </p>
         <p class="copyright">&copy; 2026 UPTD SDN 3 Way Urang.</p>
     </footer>
+
+    <!-- SCRIPT UNTUK MENJALANKAN SLIDER LIGHTBOX -->
+    <script>
+        // Ambil elemen yang dibutuhkan
+        const modal = document.getElementById("imageModal");
+        const popupImg = document.getElementById("popup-img");
+        const modalCaption = document.getElementById("modal-caption");
+        
+        // Ambil semua gambar & caption dari grid galeri
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        let currentSlideIndex = 0;
+
+        // Tambahkan event click pada setiap kotak gambar
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                openModal(index);
+            });
+        });
+
+        // Fungsi Buka Popup
+        function openModal(index) {
+            modal.style.display = "flex";
+            currentSlideIndex = index;
+            updatePopupContent();
+        }
+
+        // Fungsi Tutup Popup
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        // Fungsi Ganti Gambar (Next / Prev)
+        function changeSlide(n) {
+            currentSlideIndex += n;
+            
+            // Logika agar slider berputar terus (loop)
+            if (currentSlideIndex >= galleryItems.length) {
+                currentSlideIndex = 0; // Jika mentok kanan, balik ke gambar pertama
+            } else if (currentSlideIndex < 0) {
+                currentSlideIndex = galleryItems.length - 1; // Jika mentok kiri, ke gambar terakhir
+            }
+            
+            updatePopupContent();
+        }
+
+        // Fungsi Update Gambar & Teks di Popup
+        function updatePopupContent() {
+            const imgElement = galleryItems[currentSlideIndex].querySelector('img');
+            const captionElement = galleryItems[currentSlideIndex].querySelector('.gallery-caption');
+            
+            popupImg.src = imgElement.src;
+            modalCaption.innerText = captionElement.innerText;
+        }
+
+        // Tutup popup jika area hitam di luar gambar diklik
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
 
 </body>
 </html>
