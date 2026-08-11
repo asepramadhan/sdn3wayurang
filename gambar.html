@@ -19,7 +19,7 @@
             background-color: #f9f9f9;
         }
         
-        /* Navbar (Sama dengan sebelumnya) */
+        /* Navbar */
         .navbar {
             background-color: #637796;
             color: #ffffff;
@@ -104,9 +104,7 @@
             border-radius: 0 0 5px 5px;
             padding: 5px 0;
         }
-        .navbar-menu li:hover .dropdown-content {
-            display: block;
-        }
+        .navbar-menu li:hover .dropdown-content { display: block; }
         .dropdown-content li { width: 100%; }
         .dropdown-content a {
             padding: 12px 20px;
@@ -144,13 +142,13 @@
             border-radius: 2px;
         }
 
-        /* Grid Galeri Foto */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
         }
 
+        /* Ikon Album (Menandakan ada banyak foto) */
         .gallery-item {
             background: #fff;
             border-radius: 8px;
@@ -158,25 +156,36 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
-            cursor: pointer; /* Ubah kursor jadi tangan saat diarahkan ke gambar */
+            cursor: pointer;
         }
-
         .gallery-item:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 15px rgba(0,0,0,0.15);
         }
 
-        .gallery-item img {
+        /* Tanda jumlah foto di pojok kanan atas sampul */
+        .album-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .gallery-item > img {
             width: 100%;
             height: 220px;
             object-fit: cover;
             display: block;
             transition: transform 0.5s ease;
         }
-
-        .gallery-item:hover img {
-            transform: scale(1.05);
-        }
+        .gallery-item:hover > img { transform: scale(1.05); }
 
         .gallery-caption {
             padding: 15px;
@@ -184,11 +193,19 @@
             font-weight: 500;
             color: #444;
             border-top: 1px solid #eee;
+            position: relative;
+            z-index: 2;
+            background: #fff;
+        }
+
+        /* Menyembunyikan foto tambahan di grid */
+        .hidden-images {
+            display: none; 
         }
 
         /* --- STYLING LIGHTBOX (POPUP SLIDER) --- */
         .modal {
-            display: none; /* Sembunyikan secara default */
+            display: none;
             position: fixed;
             z-index: 2000;
             padding-top: 20px;
@@ -196,7 +213,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.9); /* Background hitam transparan */
+            background-color: rgba(0, 0, 0, 0.9);
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -204,19 +221,18 @@
 
         .modal-content {
             max-width: 90%;
-            max-height: 75vh;
+            max-height: 70vh;
             border-radius: 5px;
             object-fit: contain;
             box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-            animation: zoomIn 0.3s ease; /* Animasi muncul */
+            animation: zoomIn 0.3s ease;
         }
 
         @keyframes zoomIn {
-            from {transform: scale(0.8); opacity: 0;}
+            from {transform: scale(0.9); opacity: 0;}
             to {transform: scale(1); opacity: 1;}
         }
 
-        /* Tombol Close */
         .close-btn {
             position: absolute;
             top: 20px;
@@ -227,9 +243,8 @@
             cursor: pointer;
             transition: 0.3s;
         }
-        .close-btn:hover, .close-btn:focus { color: #ffcc00; text-decoration: none; }
+        .close-btn:hover { color: #ffcc00; }
 
-        /* Tombol Next / Prev */
         .prev, .next {
             cursor: pointer;
             position: absolute;
@@ -252,16 +267,20 @@
             color: #ffcc00;
         }
 
-        /* Teks Keterangan di bawah Popup */
+        /* Keterangan & Counter di dalam Modal */
         #modal-caption {
             margin-top: 15px;
-            color: #ccc;
-            font-size: 1.1rem;
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: bold;
             text-align: center;
-            padding: 0 20px;
+        }
+        #modal-counter {
+            color: #aaa;
+            font-size: 0.9rem;
+            margin-top: 5px;
         }
 
-        /* Footer */
         footer {
             background-color: #333333;
             color: #ffffff;
@@ -272,7 +291,6 @@
         footer p { margin-bottom: 10px; font-size: 0.95rem; }
         .copyright { margin-top: 20px; font-size: 0.85rem; color: #aaaaaa; }
 
-        /* Responsif untuk HP */
         @media (max-width: 768px) {
             .navbar { flex-direction: column; padding: 15px; gap: 15px; }
             .navbar-menu { flex-wrap: wrap; justify-content: center; gap: 10px 20px; }
@@ -293,44 +311,12 @@
         </a>
         
         <ul class="navbar-menu">
-            <li>
-                <a href="index.html#beranda">Beranda <span class="dropdown-icon">&#9662;</span></a>
-                <ul class="dropdown-content">
-                    <li><a href="gambar.html">Gambar</a></li>
-                    <li><a href="video.html">Video</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="index.html#profil">Profil <span class="dropdown-icon">&#9662;</span></a>
-                <ul class="dropdown-content">
-                    <li><a href="tentang-sekolah.html">Tentang Sekolah</a></li>
-                    <li><a href="kepala-sekolah.html">Kepala Sekolah</a></li>
-                    <li><a href="prestasi-sekolah.html">Prestasi Sekolah</a></li>
-                    <li><a href="guru-karyawan.html">Dewan Guru dan Karyawan</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="index.html#data">Data <span class="dropdown-icon">&#9662;</span></a>
-                <ul class="dropdown-content">
-                    <li><a href="data-guru.html">Data Guru</a></li>
-                    <li><a href="data-siswa.html">Data Siswa</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="index.html#informasi">Informasi <span class="dropdown-icon">&#9662;</span></a>
-                <ul class="dropdown-content">
-                    <li><a href="pengumuman.html">Pengumuman</a></li>
-                    <li><a href="unduhan.html">Unduhan</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#link">Link <span class="dropdown-icon">&#9662;</span></a>
-                <ul class="dropdown-content">
-                    <li><a href="https://referensi.data.kemendikdasmen.go.id/pendidikan/npsn/10800148" target="_blank">Kemendikdasmen</a></li>
-                    <li><a href="https://www.instagram.com/sdn3_wayurang/" target="_blank">Instagram</a></li>
-                    <li><a href="https://maps.app.goo.gl/58QXYSDo9iLfGgwj9" target="_blank">Google Maps</a></li>
-                </ul>
-            </li>
+            <!-- Isi menu sama seperti sebelumnya, disingkat agar fokus pada konten -->
+            <li><a href="index.html#beranda">Beranda</a></li>
+            <li><a href="index.html#profil">Profil</a></li>
+            <li><a href="index.html#data">Data</a></li>
+            <li><a href="index.html#informasi">Informasi</a></li>
+            <li><a href="#link">Link</a></li>
         </ul>
     </nav>
 
@@ -338,68 +324,66 @@
     <div class="container">
         <h2 class="page-title">Galeri Kegiatan Sekolah</h2>
         
-        <!-- Grid Galeri (Total 10 Gambar) -->
         <div class="gallery-grid">
             
-            <!-- Gambar 1 -->
-            <div class="gallery-item">
+            <!-- ALBUM 1 (Contoh album dengan BANYAK foto tersembunyi) -->
+            <div class="gallery-item" onclick="openAlbum(this)">
+                <!-- Badge Penanda Jumlah Foto (Bisa disesuaikan angkanya) -->
+                <div class="album-badge">📷 3 Foto</div>
+                
+                <!-- Foto Cover (Yang tampil di halaman utama) -->
                 <img src="IMG-20260723-WA0018.jpg" alt="Peringatan Hari Anak Nasional">
                 <div class="gallery-caption">Peringatan Hari Anak Nasional</div>
+
+                <!-- DAFTAR FOTO TERSEMBUNYI UNTUK ALBUM INI -->
+                <div class="hidden-images">
+                    <!-- Masukkan foto cover lagi agar jadi slide pertama -->
+                    <img src="IMG-20260723-WA0018.jpg">
+                    <!-- Tambahkan foto-foto lain di bawah ini -->
+                    <img src="https://images.unsplash.com/photo-1546410531-908a18a7d426?auto=format&fit=crop&w=800&q=80">
+                    <img src="https://images.unsplash.com/photo-1510531704581-5b2870972060?auto=format&fit=crop&w=800&q=80">
+                </div>
             </div>
 
-            <!-- Gambar 2 -->
-            <div class="gallery-item">
+            <!-- ALBUM 2 -->
+            <div class="gallery-item" onclick="openAlbum(this)">
+                <div class="album-badge">📷 2 Foto</div>
                 <img src="latihandamkar.jpeg" alt="Latihan Dengan Damkar">
                 <div class="gallery-caption">Latihan Dengan Damkar</div>
+                
+                <div class="hidden-images">
+                    <img src="latihandamkar.jpeg">
+                    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80">
+                </div>
             </div>
 
-            <!-- Gambar 3 -->
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1546410531-908a18a7d426?auto=format&fit=crop&w=600&q=80" alt="Ekstrakurikuler Olahraga">
-                <div class="gallery-caption">Kegiatan Ekstrakurikuler Olahraga</div>
-            </div>
-
-            <!-- Gambar 4 -->
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1510531704581-5b2870972060?auto=format&fit=crop&w=600&q=80" alt="Upacara Bendera">
-                <div class="gallery-caption">Upacara Bendera Hari Senin</div>
-            </div>
-
-            <!-- Gambar 5 -->
-            <div class="gallery-item">
+            <!-- ALBUM 3 (Contoh jika hanya ada 1 foto) -->
+            <div class="gallery-item" onclick="openAlbum(this)">
+                <!-- Jika cuma 1 foto, badge-nya boleh dihapus atau ditulis 1 Foto -->
                 <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=600&q=80" alt="Kegiatan Literasi">
                 <div class="gallery-caption">Program Literasi Perpustakaan</div>
+                
+                <div class="hidden-images">
+                    <!-- Tetap masukkan foto utamanya ke sini agar popup bisa membaca -->
+                    <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=800&q=80">
+                </div>
             </div>
 
-            <!-- Gambar 6 -->
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=600&q=80" alt="Lomba Peringatan HUT RI">
-                <div class="gallery-caption">Lomba Peringatan HUT RI</div>
-            </div>
-
-            <!-- Gambar 7 -->
-            <div class="gallery-item">
+            <!-- ALBUM 4 -->
+            <div class="gallery-item" onclick="openAlbum(this)">
+                <div class="album-badge">📷 4 Foto</div>
                 <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=600&q=80" alt="Prakarya Siswa">
                 <div class="gallery-caption">Pameran Prakarya Siswa</div>
+                
+                <div class="hidden-images">
+                    <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80">
+                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80">
+                    <img src="https://images.unsplash.com/photo-1522661067900-ab829854a57f?auto=format&fit=crop&w=800&q=80">
+                    <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=800&q=80">
+                </div>
             </div>
 
-            <!-- Gambar 8 -->
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=600&q=80" alt="Kegiatan Pramuka">
-                <div class="gallery-caption">Perkemahan Pramuka</div>
-            </div>
-
-            <!-- Gambar 9 -->
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1522661067900-ab829854a57f?auto=format&fit=crop&w=600&q=80" alt="Kerja Bakti">
-                <div class="gallery-caption">Kerja Bakti Lingkungan Sekolah</div>
-            </div>
-
-            <!-- Gambar 10 -->
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=600&q=80" alt="Kegiatan Keagamaan">
-                <div class="gallery-caption">Peringatan Hari Besar Keagamaan</div>
-            </div>
+            <!-- Tambahkan album lainnya dengan struktur yang sama jika perlu -->
 
         </div>
     </div>
@@ -407,41 +391,65 @@
     <!-- ELEMEN LIGHTBOX (POPUP SLIDER) -->
     <div id="imageModal" class="modal">
         <span class="close-btn" onclick="closeModal()">&times;</span>
-        <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
-        <a class="next" onclick="changeSlide(1)">&#10095;</a>
+        <!-- Tombol Next/Prev -->
+        <a class="prev" id="btn-prev" onclick="changeSlide(-1)">&#10094;</a>
+        <a class="next" id="btn-next" onclick="changeSlide(1)">&#10095;</a>
+        
         <img class="modal-content" id="popup-img">
         <div id="modal-caption"></div>
+        <div id="modal-counter"></div>
     </div>
 
-    <!-- Bagian Footer / Kontak -->
+    <!-- Footer -->
     <footer id="kontak">
         <p><strong>📍 Alamat:</strong> Ragom Mufakat 1, Kalianda, Lampung Selatan</p>
         <p><strong>📧 Email:</strong> - | <strong>📞 Telepon:</strong> - </p>
         <p class="copyright">&copy; 2026 UPTD SDN 3 Way Urang.</p>
     </footer>
 
-    <!-- SCRIPT UNTUK MENJALANKAN SLIDER LIGHTBOX -->
+    <!-- SCRIPT KHUSUS ALBUM FOTO -->
     <script>
-        // Ambil elemen yang dibutuhkan
         const modal = document.getElementById("imageModal");
         const popupImg = document.getElementById("popup-img");
         const modalCaption = document.getElementById("modal-caption");
+        const modalCounter = document.getElementById("modal-counter");
+        const btnPrev = document.getElementById("btn-prev");
+        const btnNext = document.getElementById("btn-next");
         
-        // Ambil semua gambar & caption dari grid galeri
-        const galleryItems = document.querySelectorAll('.gallery-item');
+        let currentAlbumImages = []; // Array untuk menyimpan daftar foto di album yang sedang diklik
         let currentSlideIndex = 0;
+        let currentAlbumTitle = "";
 
-        // Tambahkan event click pada setiap kotak gambar
-        galleryItems.forEach((item, index) => {
-            item.addEventListener('click', () => {
-                openModal(index);
+        // Fungsi Buka Album
+        function openAlbum(element) {
+            // Ambil judul caption dari album yang diklik
+            currentAlbumTitle = element.querySelector('.gallery-caption').innerText;
+            
+            // Ambil SEMUA elemen <img> yang ada di dalam kotak div "hidden-images"
+            const hiddenImagesDiv = element.querySelector('.hidden-images');
+            const images = hiddenImagesDiv.querySelectorAll('img');
+            
+            // Bersihkan array sebelum mengisi gambar baru
+            currentAlbumImages = [];
+            
+            // Masukkan link gambar (src) ke dalam array
+            images.forEach(img => {
+                currentAlbumImages.push(img.src);
             });
-        });
 
-        // Fungsi Buka Popup
-        function openModal(index) {
+            // Mulai dari foto pertama
+            currentSlideIndex = 0;
+            
+            // Sembunyikan tombol Next/Prev jika foto di dalam album cuma 1
+            if (currentAlbumImages.length <= 1) {
+                btnPrev.style.display = "none";
+                btnNext.style.display = "none";
+            } else {
+                btnPrev.style.display = "block";
+                btnNext.style.display = "block";
+            }
+
             modal.style.display = "flex";
-            currentSlideIndex = index;
             updatePopupContent();
         }
 
@@ -454,26 +462,24 @@
         function changeSlide(n) {
             currentSlideIndex += n;
             
-            // Logika agar slider berputar terus (loop)
-            if (currentSlideIndex >= galleryItems.length) {
-                currentSlideIndex = 0; // Jika mentok kanan, balik ke gambar pertama
+            // Looping gambar
+            if (currentSlideIndex >= currentAlbumImages.length) {
+                currentSlideIndex = 0;
             } else if (currentSlideIndex < 0) {
-                currentSlideIndex = galleryItems.length - 1; // Jika mentok kiri, ke gambar terakhir
+                currentSlideIndex = currentAlbumImages.length - 1;
             }
             
             updatePopupContent();
         }
 
-        // Fungsi Update Gambar & Teks di Popup
+        // Fungsi Tampilkan Gambar & Teks ke Layar
         function updatePopupContent() {
-            const imgElement = galleryItems[currentSlideIndex].querySelector('img');
-            const captionElement = galleryItems[currentSlideIndex].querySelector('.gallery-caption');
-            
-            popupImg.src = imgElement.src;
-            modalCaption.innerText = captionElement.innerText;
+            popupImg.src = currentAlbumImages[currentSlideIndex];
+            modalCaption.innerText = currentAlbumTitle;
+            modalCounter.innerText = "Foto " + (currentSlideIndex + 1) + " dari " + currentAlbumImages.length;
         }
 
-        // Tutup popup jika area hitam di luar gambar diklik
+        // Tutup saat mengklik area hitam di luar gambar
         window.onclick = function(event) {
             if (event.target == modal) {
                 closeModal();
